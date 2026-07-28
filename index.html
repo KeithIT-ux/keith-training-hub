@@ -75,76 +75,6 @@
             font-size: 0.95rem;
         }
 
-        /* ── Progress Tracker ──────────────────────────────────── */
-        .progress-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: var(--glass-shadow);
-            border-radius: 16px;
-            padding: 1.5rem 2rem;
-            margin-bottom: 2.5rem;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .progress-stat {
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .progress-pct {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent-green-glow);
-            line-height: 1;
-        }
-
-        .progress-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 0.25rem;
-        }
-
-        .progress-divider {
-            width: 1px;
-            height: 50px;
-            background: var(--card-border);
-            flex-shrink: 0;
-        }
-
-        .progress-bar-wrap {
-            flex: 1;
-        }
-
-        .progress-bar-label {
-            font-size: 0.9rem;
-            color: var(--text-main);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .progress-bar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--card-border);
-            border-radius: 999px;
-            height: 12px;
-            overflow: hidden;
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-green-glow));
-            width: 0%;
-            border-radius: 999px;
-            transition: width 0.4s ease-out;
-        }
-
         /* ── Controls Area ─────────────────────────────────────── */
         .controls-row {
             display: flex;
@@ -249,10 +179,7 @@
             box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
         }
 
-        .card.completed {
-            border-color: var(--accent-green-glow);
-            background: rgba(50, 120, 100, 0.15);
-        }
+        
 
         .card-header {
             display: flex;
@@ -320,38 +247,7 @@
             gap: 0.5rem;
         }
 
-        .check-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--card-border);
-            color: var(--text-muted);
-            padding: 0.4rem 0.8rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border-radius: 999px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            transition: all 0.2s ease;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .check-btn:hover {
-            color: var(--text-main);
-            border-color: var(--text-muted);
-        }
-
-        .card.completed .check-btn {
-            background: var(--accent-green);
-            color: var(--text-main);
-            border-color: var(--accent-green);
-        }
-
-        .check-btn svg {
-            width: 12px;
-            height: 12px;
-            fill: currentColor;
-        }
+        
 
         .btn-launch {
             background: var(--accent-green);
@@ -368,31 +264,6 @@
 
         .btn-launch:hover {
             background: var(--accent-green-glow);
-        }
-
-        /* ── Done overlay checkmark ─────────────────────────────── */
-        .done-mark {
-            position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            width: 20px;
-            height: 20px;
-            background: var(--accent-green-glow);
-            border-radius: 50%;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 8px var(--accent-green-glow);
-        }
-
-        .done-mark svg {
-            width: 12px;
-            height: 12px;
-            fill: #0f172a;
-        }
-
-        .card.completed .done-mark {
-            display: flex;
         }
 
         .hidden {
@@ -444,12 +315,7 @@
             </div>
         </header>
 
-        <!-- ── Progress Tracker ──────────────────────────────────── -->
-        <div class="progress-card">
-            <div class="progress-stat">
-                <div class="progress-pct" id="pctText">0%</div>
-                <div class="progress-label">Complete</div>
-            </div>
+        
             <div class="progress-divider"></div>
             <div class="progress-bar-wrap">
                 <div class="progress-bar-label">Overall Curriculum Progress — <span id="progressSummary">0 of 14 completed</span></div>
@@ -482,7 +348,6 @@
             
             <!-- LEVEL 1 -->
             <div class="card" data-level="1" id="card_teams_intro" data-search="introduction to collaborating with microsoft teams beginner level 1">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l1">Level 1 · Beginner</span>
@@ -494,17 +359,12 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 25 min</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_teams_intro')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/modules/introduction-to-collaborating-microsoft-teams/" target="_blank" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
             </div>
 
             <div class="card" data-level="1" id="card_teams_channels" data-search="collaborate in teams and channels with microsoft teams chat files level 1">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l1">Level 1 · Beginner</span>
@@ -516,17 +376,12 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 43 min</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_teams_channels')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/modules/collaborate-teams-channels-microsoft-teams/" target="_blank" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
             </div>
 
             <div class="card" data-level="1" id="card_teams_meetings" data-search="facilitate meetings and events with microsoft teams scheduling presentation level 1">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l1">Level 1 · Beginner</span>
@@ -538,10 +393,6 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 36 min</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_teams_meetings')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/modules/facilitate-meetings-events-microsoft-teams/" target="_blank" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
@@ -549,7 +400,6 @@
 
             <!-- LEVEL 2 -->
             <div class="card" data-level="2" id="card_outlook" data-search="discover new outlook for windows email inbox calendar scheduling level 2">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l2">Level 2 · Intermediate</span>
@@ -561,10 +411,6 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 5 modules · 2h 19m</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_outlook')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/paths/discover-new-outlook-windows/" target="_blank" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
@@ -572,7 +418,6 @@
 
             <!-- LEVEL 3 -->
             <div class="card" data-level="3" id="card_copilot_start" data-search="get started with microsoft 365 copilot ai fundamentals learning path level 3">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l3">Level 3 · Intermediate</span>
@@ -584,17 +429,12 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 3 modules · 1h 31m</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_copilot_start')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/paths/get-started-with-microsoft-365-copilot/" target="_blank" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
             </div>
 
             <div class="card" data-level="3" id="card_copilot_ai" data-search="work smarter with ai using microsoft copilot explore search engine level 3">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l3">Level 3 · Intermediate</span>
@@ -606,17 +446,12 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 1h 5m</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_copilot_ai')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/modules/explore-microsoft-copilot-business-users/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
             </div>
 
             <div class="card" data-level="3" id="card_copilot_apps" data-search="work smarter with copilot across your microsoft 365 apps word excel ppt level 3">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l3">Level 3 · Intermediate</span>
@@ -628,17 +463,12 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 39 min</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_copilot_apps')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/modules/copilot-office-applications/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
             </div>
 
             <div class="card" data-level="3" id="card_copilot_excel" data-search="work smarter in excel with copilot chat data tables graphs formulas level 3">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l3">Level 3 · Intermediate</span>
@@ -650,10 +480,6 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 21 min</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_copilot_excel')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/modules/work-smarter-excel/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
@@ -661,7 +487,6 @@
 
             <!-- LEVEL 4 -->
             <div class="card" data-level="4" id="card_copilot_chat_basic" data-search="transform ideas into action with copilot chat basic web data grounding level 4">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l4">Level 4 · Advanced</span>
@@ -673,17 +498,12 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 3 modules · 1h 23m</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_copilot_chat_basic')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/paths/explore-microsoft-365-copilot-business-chat/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
             </div>
 
             <div class="card" data-level="4" id="card_copilot_create" data-search="create and draft with microsoft 365 copilot content outline reports level 4">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l4">Level 4 · Advanced</span>
@@ -695,17 +515,12 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 27 min</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_copilot_create')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/modules/create-draft-content-with-microsoft-copilot-microsoft-365/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
             </div>
 
             <div class="card" data-level="4" id="card_copilot_edit" data-search="edit and transform content with microsoft 365 copilot summarize text table level 4">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l4">Level 4 · Advanced</span>
@@ -717,17 +532,12 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 31 min</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_copilot_edit')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/modules/edit-transform-content-with-microsoft-copilot-microsoft-365/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
             </div>
 
             <div class="card" data-level="4" id="card_copilot_prompts" data-search="craft effective prompts for microsoft 365 copilot context parameters level 4">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l4">Level 4 · Advanced</span>
@@ -739,17 +549,12 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 4 modules · 2h 10m</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_copilot_prompts')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/paths/craft-effective-prompts-copilot-microsoft-365/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
             </div>
 
             <div class="card" data-level="4" id="card_copilot_draft" data-search="draft analyze and present with microsoft 365 copilot advanced scenarios level 4">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l4">Level 4 · Advanced</span>
@@ -761,17 +566,12 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 7 modules · 4h 18m</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_copilot_draft')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/paths/draft-analyze-present-microsoft-365-copilot/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
             </div>
 
             <div class="card" data-level="4" id="card_copilot_agents" data-search="explore prebuilt microsoft 365 copilot agents custom coach analyst level 4">
-                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <div>
                     <div class="card-header">
                         <span class="card-tag tag-l4">Level 4 · Advanced</span>
@@ -783,10 +583,6 @@
                 <div class="card-footer">
                     <span class="est-time">⏱️ 1h 12m</span>
                     <div class="btn-row">
-                        <button class="check-btn" onclick="toggleDone('card_copilot_agents')">
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Done</span>
-                        </button>
                         <a href="https://learn.microsoft.com/en-us/training/modules/explore-prebuilt-microsoft-365-copilot-agents/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
                     </div>
                 </div>
@@ -796,8 +592,7 @@
     </div>
 
     <script>
-        const TOTAL = 14;
-        const STORE_KEY = 'keith_learn_progress';
+        
         let currentFilter = 'all';
 
         // ── Load state ───────────────────────────────────────────
