@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Training Center | Microsoft Learn Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-green: #327864;
+            --accent-green-glow: #4abf9f;
+            --accent-blue: #38bdf8;
+            --accent-indigo: #6366f1;
+            --accent-purple: #a855f7;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top right, #1e1b4b, #0f172a 50%, #090d16);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .logo-container img {
+            height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .header-title-area {
+            text-align: right;
+        }
+
+        .header-title-area h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-green-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-title-area p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ── Progress Tracker ──────────────────────────────────── */
+        .progress-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--glass-shadow);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .progress-stat {
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .progress-pct {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-green-glow);
+            line-height: 1;
+        }
+
+        .progress-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        .progress-divider {
+            width: 1px;
+            height: 50px;
+            background: var(--card-border);
+            flex-shrink: 0;
+        }
+
+        .progress-bar-wrap {
+            flex: 1;
+        }
+
+        .progress-bar-label {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .progress-bar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 999px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-green-glow));
+            width: 0%;
+            border-radius: 999px;
+            transition: width 0.4s ease-out;
+        }
+
+        /* ── Controls Area ─────────────────────────────────────── */
+        .controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            padding: 0.25rem;
+            border-radius: 999px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.5rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-green);
+            color: var(--text-main);
+            box-shadow: 0 4px 12px rgba(50, 120, 100, 0.3);
+        }
+
+        .search-container {
+            position: relative;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .search-container input {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 999px;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-container input:focus {
+            border-color: var(--accent-green-glow);
+        }
+
+        .search-container::before {
+            content: "🔍";
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Grid & Cards ───────────────────────────────────────── */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.5rem;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .card.completed {
+            border-color: var(--accent-green-glow);
+            background: rgba(50, 120, 100, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+        }
+
+        .tag-l1 { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+        .tag-l2 { background: rgba(99, 102, 241, 0.15); color: #6366f1; }
+        .tag-l3 { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+        .tag-l4 { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+
+        .type-badge {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .est-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .check-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .check-btn:hover {
+            color: var(--text-main);
+            border-color: var(--text-muted);
+        }
+
+        .card.completed .check-btn {
+            background: var(--accent-green);
+            color: var(--text-main);
+            border-color: var(--accent-green);
+        }
+
+        .check-btn svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
+
+        .btn-launch {
+            background: var(--accent-green);
+            color: var(--text-main);
+            padding: 0.4rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 999px;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .btn-launch:hover {
+            background: var(--accent-green-glow);
+        }
+
+        /* ── Done overlay checkmark ─────────────────────────────── */
+        .done-mark {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-green-glow);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 8px var(--accent-green-glow);
+        }
+
+        .done-mark svg {
+            width: 12px;
+            height: 12px;
+            fill: #0f172a;
+        }
+
+        .card.completed .done-mark {
+            display: flex;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        /* ── Responsive ──────────────────────────────────────────── */
+        @media (max-width: 640px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .header-title-area {
+                text-align: center;
+            }
+            .controls-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .tabs-container {
+                overflow-x: auto;
+            }
+            .search-container {
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- ── Header ──────────────────────────────────────────────── -->
+        <header>
+            <div class="logo-container">
+                <img src="keith_hor w-Tag-all fonts outlined.png" alt="Keith & Associates Logo">
+            </div>
+            <div class="header-title-area">
+                <h1>Microsoft Learn Hub</h1>
+                <p>Enterprise Learning & Certification Tracks</p>
+            </div>
+        </header>
+
+        <!-- ── Progress Tracker ──────────────────────────────────── -->
+        <div class="progress-card">
+            <div class="progress-stat">
+                <div class="progress-pct" id="pctText">0%</div>
+                <div class="progress-label">Complete</div>
+            </div>
+            <div class="progress-divider"></div>
+            <div class="progress-bar-wrap">
+                <div class="progress-bar-label">Overall Curriculum Progress — <span id="progressSummary">0 of 14 completed</span></div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                </div>
+                <div class="progress-label" style="text-align: left; margin-top: 0.5rem; text-transform: none;">Check off completed items to save progress automatically.</div>
+            </div>
+        </div>
+
+        <!-- ── Controls ──────────────────────────────────────────── -->
+        <div class="controls-row">
+            <div class="tabs-container">
+                <button class="tab-btn active" onclick="filterLevel('all')">All Levels</button>
+                <button class="tab-btn" onclick="filterLevel('1')">Level 1</button>
+                <button class="tab-btn" onclick="filterLevel('2')">Level 2</button>
+                <button class="tab-btn" onclick="filterLevel('3')">Level 3</button>
+                <button class="tab-btn" onclick="filterLevel('4')">Level 4</button>
+            </div>
+            <div class="search-container">
+                <input type="search" id="searchInput" placeholder="Search trainings..." oninput="handleSearch()">
+            </div>
+        </div>
+
+        <!-- ── Empty State ───────────────────────────────────────── -->
+        <div class="no-results" id="noResults">No training modules match your search criteria.</div>
+
+        <!-- ── Grid ──────────────────────────────────────────────── -->
+        <div class="cards-grid" id="cardsGrid">
+            
+            <!-- LEVEL 1 -->
+            <div class="card" data-level="1" id="card_teams_intro" data-search="introduction to collaborating with microsoft teams beginner level 1">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l1">Level 1 · Beginner</span>
+                        <span class="type-badge">Module</span>
+                    </div>
+                    <h2 class="card-title">Introduction to collaborating with Microsoft Teams</h2>
+                    <p class="card-desc">Learn the basics of using Microsoft Teams to share information, communicate with colleagues, and work together.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 25 min</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_teams_intro')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/modules/introduction-to-collaborating-microsoft-teams/" target="_blank" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-level="1" id="card_teams_channels" data-search="collaborate in teams and channels with microsoft teams chat files level 1">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l1">Level 1 · Beginner</span>
+                        <span class="type-badge">Module</span>
+                    </div>
+                    <h2 class="card-title">Collaborate in teams and channels with Microsoft Teams</h2>
+                    <p class="card-desc">Understand how to structure channels, manage files, and host direct conversations in Teams.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 43 min</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_teams_channels')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/modules/collaborate-teams-channels-microsoft-teams/" target="_blank" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-level="1" id="card_teams_meetings" data-search="facilitate meetings and events with microsoft teams scheduling presentation level 1">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l1">Level 1 · Beginner</span>
+                        <span class="type-badge">Module</span>
+                    </div>
+                    <h2 class="card-title">Facilitate meetings and events with Microsoft Teams</h2>
+                    <p class="card-desc">Configure meeting options, schedule breakout rooms, and run interactive webinar events.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 36 min</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_teams_meetings')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/modules/facilitate-meetings-events-microsoft-teams/" target="_blank" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEVEL 2 -->
+            <div class="card" data-level="2" id="card_outlook" data-search="discover new outlook for windows email inbox calendar scheduling level 2">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l2">Level 2 · Intermediate</span>
+                        <span class="type-badge">Learning Path</span>
+                    </div>
+                    <h2 class="card-title">Discover new Outlook for Windows</h2>
+                    <p class="card-desc">Master the interface, unified inbox management, smart reminders, and scheduling features in the new Outlook client.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 5 modules · 2h 19m</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_outlook')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/paths/discover-new-outlook-windows/" target="_blank" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEVEL 3 -->
+            <div class="card" data-level="3" id="card_copilot_start" data-search="get started with microsoft 365 copilot ai fundamentals learning path level 3">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l3">Level 3 · Intermediate</span>
+                        <span class="type-badge">Learning Path</span>
+                    </div>
+                    <h2 class="card-title">Get started with Microsoft 365 Copilot</h2>
+                    <p class="card-desc">Understand Copilot architecture, data security rules, and initial AI tools configuration.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 3 modules · 1h 31m</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_copilot_start')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/paths/get-started-with-microsoft-365-copilot/" target="_blank" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-level="3" id="card_copilot_ai" data-search="work smarter with ai using microsoft copilot explore search engine level 3">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l3">Level 3 · Intermediate</span>
+                        <span class="type-badge">Module</span>
+                    </div>
+                    <h2 class="card-title">Work smarter with AI using Microsoft Copilot</h2>
+                    <p class="card-desc">Use Microsoft Copilot's general web search grounding to summarize data, compose messages, and research topics.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 1h 5m</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_copilot_ai')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/modules/explore-microsoft-copilot-business-users/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-level="3" id="card_copilot_apps" data-search="work smarter with copilot across your microsoft 365 apps word excel ppt level 3">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l3">Level 3 · Intermediate</span>
+                        <span class="type-badge">Module</span>
+                    </div>
+                    <h2 class="card-title">Work smarter with Copilot across your Microsoft 365 apps</h2>
+                    <p class="card-desc">Integrate Copilot with Word, PowerPoint, OneNote, Outlook, and Excel to automate simple document creations.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 39 min</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_copilot_apps')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/modules/copilot-office-applications/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-level="3" id="card_copilot_excel" data-search="work smarter in excel with copilot chat data tables graphs formulas level 3">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l3">Level 3 · Intermediate</span>
+                        <span class="type-badge">Module</span>
+                    </div>
+                    <h2 class="card-title">Work smarter in Excel with Copilot Chat</h2>
+                    <p class="card-desc">Learn how to create formulas, analyze data sets, format spreadsheets, and generate charts using Excel Copilot.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 21 min</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_copilot_excel')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/modules/work-smarter-excel/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEVEL 4 -->
+            <div class="card" data-level="4" id="card_copilot_chat_basic" data-search="transform ideas into action with copilot chat basic web data grounding level 4">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l4">Level 4 · Advanced</span>
+                        <span class="type-badge">Learning Path</span>
+                    </div>
+                    <h2 class="card-title">Transform ideas into action with Copilot Chat (Basic)</h2>
+                    <p class="card-desc">Explore Microsoft 365 Copilot Business Chat, grounding models in corporate databases to find insights.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 3 modules · 1h 23m</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_copilot_chat_basic')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/paths/explore-microsoft-365-copilot-business-chat/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-level="4" id="card_copilot_create" data-search="create and draft with microsoft 365 copilot content outline reports level 4">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l4">Level 4 · Advanced</span>
+                        <span class="type-badge">Module</span>
+                    </div>
+                    <h2 class="card-title">Create and draft with Microsoft 365 Copilot</h2>
+                    <p class="card-desc">Use Copilot in Word, PowerPoint, and Outlook to write drafts, compile report outlines, and build slideshow drafts.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 27 min</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_copilot_create')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/modules/create-draft-content-with-microsoft-copilot-microsoft-365/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-level="4" id="card_copilot_edit" data-search="edit and transform content with microsoft 365 copilot summarize text table level 4">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l4">Level 4 · Advanced</span>
+                        <span class="type-badge">Module</span>
+                    </div>
+                    <h2 class="card-title">Edit and transform content with Microsoft 365 Copilot</h2>
+                    <p class="card-desc">Refine document styling, rewrite active voices, summarize massive documents, and convert text blocks to tables.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 31 min</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_copilot_edit')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/modules/edit-transform-content-with-microsoft-copilot-microsoft-365/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-level="4" id="card_copilot_prompts" data-search="craft effective prompts for microsoft 365 copilot context parameters level 4">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l4">Level 4 · Advanced</span>
+                        <span class="type-badge">Learning Path</span>
+                    </div>
+                    <h2 class="card-title">Craft effective prompts for Microsoft 365 Copilot</h2>
+                    <p class="card-desc">Master prompt structure (Goal, Context, Source, Expectations) to get highly accurate outputs from Copilot.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 4 modules · 2h 10m</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_copilot_prompts')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/paths/craft-effective-prompts-copilot-microsoft-365/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-level="4" id="card_copilot_draft" data-search="draft analyze and present with microsoft 365 copilot advanced scenarios level 4">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l4">Level 4 · Advanced</span>
+                        <span class="type-badge">Learning Path</span>
+                    </div>
+                    <h2 class="card-title">Draft, analyze, and present with Microsoft 365 Copilot</h2>
+                    <p class="card-desc">Advanced learning path using Copilot to analyze data in Excel, draft executive emails in Outlook, and style PPT decks.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 7 modules · 4h 18m</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_copilot_draft')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/paths/draft-analyze-present-microsoft-365-copilot/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-level="4" id="card_copilot_agents" data-search="explore prebuilt microsoft 365 copilot agents custom coach analyst level 4">
+                <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <div>
+                    <div class="card-header">
+                        <span class="card-tag tag-l4">Level 4 · Advanced</span>
+                        <span class="type-badge">Module</span>
+                    </div>
+                    <h2 class="card-title">Explore prebuilt Microsoft 365 Copilot agents</h2>
+                    <p class="card-desc">Learn how to activate, interact with, and leverage specialized prebuilt Copilot agents for business analyses.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="est-time">⏱️ 1h 12m</span>
+                    <div class="btn-row">
+                        <button class="check-btn" onclick="toggleDone('card_copilot_agents')">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            <span>Done</span>
+                        </button>
+                        <a href="https://learn.microsoft.com/en-us/training/modules/explore-prebuilt-microsoft-365-copilot-agents/" target="_blank" rel="noopener" class="btn-launch">Launch ↗</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const TOTAL = 14;
+        const STORE_KEY = 'keith_learn_progress';
+        let currentFilter = 'all';
+
+        // ── Load state ───────────────────────────────────────────
+        function loadState() {
+            try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
+            catch { return {}; }
+        }
+
+        function saveState(s) {
+            localStorage.setItem(STORE_KEY, JSON.stringify(s));
+        }
+
+        // ── Toggle complete ──────────────────────────────────────
+        function toggleDone(id) {
+            const state = loadState();
+            state[id] = !state[id];
+            saveState(state);
+            applyState(state);
+        }
+
+        // ── Apply progress state ─────────────────────────────────
+        function applyState(state) {
+            let done = 0;
+            document.querySelectorAll('.card').forEach(card => {
+                const id = card.id;
+                if (state[id]) {
+                    card.classList.add('completed');
+                    card.querySelector('.check-btn span').textContent = 'Completed';
+                    done++;
+                } else {
+                    card.classList.remove('completed');
+                    card.querySelector('.check-btn span').textContent = 'Done';
+                }
+            });
+            const pct = Math.round((done / TOTAL) * 100);
+            document.getElementById('pctText').textContent = pct + '%';
+            document.getElementById('progressBar').style.width = pct + '%';
+            document.getElementById('progressSummary').textContent = done + ' of ' + TOTAL + ' completed';
+        }
+
+        // ── Filter by Level Tab ──────────────────────────────────
+        function filterLevel(level) {
+            currentFilter = level;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            runFilter();
+        }
+
+        // ── Filter by search input ───────────────────────────────
+        function handleSearch() {
+            runFilter();
+        }
+
+        // ── Run filter combination ───────────────────────────────
+        function runFilter() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            document.querySelectorAll('.card').forEach(card => {
+                const cardLevel = card.dataset.level;
+                const cardSearch = (card.dataset.search || '') + ' ' + (card.querySelector('.card-title')?.textContent || '');
+                
+                const matchesTab = (currentFilter === 'all' || cardLevel === currentFilter);
+                const matchesSearch = (!searchVal || cardSearch.toLowerCase().includes(searchVal));
+
+                if (matchesTab && matchesSearch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // ── Init ─────────────────────────────────────────────────
+        applyState(loadState());
+    </script>
+</body>
+</html>
