@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keith Learning Portal | Viva & Learn Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent-green: #10b981;
+            --accent-green-glow: #34d399;
+            --accent-blue: #3b82f6;
+            --accent-blue-glow: #60a5fa;
+            --accent-purple: #8b5cf6;
+            --accent-purple-glow: #a78bfa;
+            --accent-pink: #ec4899;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            --gold: #fbbf24;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top right, #1e1b4b, #090d16 60%, #030712);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* ── Header ──────────────────────────────────────────────── */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            background: rgba(17, 24, 39, 0.4);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-divider {
+            width: 1px;
+            height: 35px;
+            background: var(--card-border);
+        }
+
+        .logo-text h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, var(--accent-blue-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .profile-widget {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.5rem 1rem 0.5rem 0.5rem;
+            border-radius: 999px;
+            border: 1px solid var(--card-border);
+        }
+
+        .profile-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .profile-info {
+            line-height: 1.2;
+        }
+
+        .profile-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .profile-dept {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Profile Stats Panel ───────────────────────────────── */
+        .stats-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+
+        .stat-card.xp::before { background: var(--accent-blue); }
+        .stat-card.rank::before { background: var(--gold); }
+        .stat-card.badges::before { background: var(--accent-purple); }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .stat-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Badges Widget */
+        .badges-widget {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .badge-slot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            filter: grayscale(1);
+            opacity: 0.3;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .badge-slot.unlocked {
+            filter: grayscale(0);
+            opacity: 1;
+            background: rgba(139, 92, 246, 0.2);
+            border-color: var(--accent-purple-glow);
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+        }
+
+        .badge-slot:hover::after {
+            content: attr(data-title);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0f172a;
+            color: #fff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            z-index: 10;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        /* ── Navigation Tabs ───────────────────────────────────── */
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(17, 24, 39, 0.6);
+            border: 1px solid var(--card-border);
+            padding: 0.25rem;
+            border-radius: 999px;
+            backdrop-filter: blur(12px);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-blue);
+            color: var(--text-main);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        /* ── Search & Filter Controls ────────────────────────────── */
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-container {
+            position: relative;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-container input {
+            width: 100%;
+            background: rgba(17, 24, 39, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 999px;
+            padding: 0.6rem 1rem 0.6rem 2.5rem;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-container input:focus {
+            border-color: var(--accent-blue-glow);
+        }
+
+        .search-container::before {
+            content: "🔍";
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .filter-select {
+            background: rgba(17, 24, 39, 0.6);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 0.6rem 1.5rem;
+            border-radius: 999px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            border-color: var(--accent-blue-glow);
+        }
+
+        /* ── Grid & Cards ───────────────────────────────────────── */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.5rem;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
+        }
+
+        .card.completed {
+            border-color: var(--accent-green-glow);
+            background: rgba(16, 185, 129, 0.08);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+        }
+
+        .tag-l0 { background: rgba(156, 163, 175, 0.15); color: #d1d5db; }
+        .tag-l1 { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+        .tag-l2 { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+        .tag-l3 { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+        .tag-l4 { background: rgba(236, 72, 153, 0.15); color: #f472b6; }
+
+        .type-badge {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .est-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .xp-reward {
+            font-size: 0.8rem;
+            color: var(--accent-blue-glow);
+            font-weight: 600;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-action {
+            padding: 0.4rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-family: 'Inter', sans-serif;
+            border: none;
+        }
+
+        .btn-launch {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+        }
+
+        .btn-launch:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-quiz {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        .btn-quiz:hover {
+            background: var(--accent-blue-glow);
+        }
+
+        .card.completed .btn-quiz {
+            background: var(--accent-green);
+            cursor: default;
+        }
+
+        .card.completed .btn-quiz:hover {
+            background: var(--accent-green);
+        }
+
+        /* ── Leaderboard Tab ───────────────────────────────────── */
+        .leaderboard-container {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--glass-shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .leaderboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .leaderboard-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .leaderboard-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .leaderboard-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: var(--card-border);
+        }
+
+        .leaderboard-row.user-row {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
+        }
+
+        .leaderboard-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .rank-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            width: 30px;
+            text-align: center;
+        }
+
+        .rank-1 { color: var(--gold); font-size: 1.4rem; }
+        .rank-2 { color: #cbd5e1; font-size: 1.3rem; }
+        .rank-3 { color: #b45309; font-size: 1.2rem; }
+
+        .leaderboard-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .leaderboard-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .leaderboard-info p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .leaderboard-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .leaderboard-xp {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent-blue-glow);
+        }
+
+        .leaderboard-completions {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Quiz Modal ────────────────────────────────────────── */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-card {
+            background: #111827;
+            border: 1px solid var(--card-border);
+            width: 90%;
+            max-width: 550px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--text-main);
+        }
+
+        .modal-body {
+            padding: 2rem 1.5rem;
+        }
+
+        .quiz-progress {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .quiz-progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-progress-bar-fill {
+            height: 100%;
+            background: var(--accent-blue);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .option-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .option-item.selected {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: var(--accent-blue);
+        }
+
+        .option-item.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--accent-green);
+        }
+
+        .option-item.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+        }
+
+        .option-radio {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .option-item.selected .option-radio {
+            border-color: var(--accent-blue);
+        }
+
+        .option-item.selected .option-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-modal-next {
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-modal-next:hover {
+            background: var(--accent-blue-glow);
+        }
+
+        .btn-modal-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Success screen in modal */
+        .quiz-success {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .success-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .success-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent-green-glow);
+        }
+
+        .success-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        /* ── Confetti Canvas ───────────────────────────────────── */
+        #confettiCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1100;
+            display: none;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .logo-container {
+                flex-direction: column;
+            }
+            .logo-divider {
+                display: none;
+            }
+            .stats-panel {
+                grid-template-columns: 1fr;
+            }
+            .nav-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .tabs-container {
+                justify-content: center;
+            }
+            .search-container {
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="confettiCanvas"></canvas>
+
+    <div class="container">
+        <!-- ── Header ──────────────────────────────────────────────── -->
+        <header>
+            <div class="logo-container">
+                <img src="keith_hor w-Tag-all fonts outlined.png" alt="Keith & Associates Logo">
+                <div class="logo-divider"></div>
+                <div class="logo-text">
+                    <h1>Viva Learning Hub</h1>
+                    <p>Gamified Skills & Compliance</p>
+                </div>
+            </div>
+            
+            <div class="profile-widget">
+                <div class="profile-avatar">DE</div>
+                <div class="profile-info">
+                    <div class="profile-name">Doyle English</div>
+                    <div class="profile-dept">IT Department</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ── Stats Panel ────────────────────────────────────────── -->
+        <div class="stats-panel">
+            <div class="stat-card xp">
+                <div class="stat-label">Total Experience (XP)</div>
+                <div class="stat-value" id="userXpVal">0 XP</div>
+                <div class="stat-subtitle" id="userLevelTitle">Level 0: Rookie Explorer</div>
+            </div>
+            <div class="stat-card rank">
+                <div class="stat-label">Leaderboard Rank</div>
+                <div class="stat-value" id="userRankVal">#12</div>
+                <div class="stat-subtitle">Out of 34 employees</div>
+            </div>
+            <div class="stat-card badges">
+                <div class="stat-label">Milestone Badges</div>
+                <div class="badges-widget" id="badgesWidget">
+                    <div class="badge-slot" data-id="seed" data-title="Digital Seed (1st complete)" id="badge_seed">🌱</div>
+                    <div class="badge-slot" data-id="teams" data-title="Teams Pro (All Level 1)" id="badge_teams">⚡</div>
+                    <div class="badge-slot" data-id="loop" data-title="Loop Pioneer (Complete Loop)" id="badge_loop">🔄</div>
+                    <div class="badge-slot" data-id="copilot" data-title="Copilot Champion (All Copilot)" id="badge_copilot">🤖</div>
+                    <div class="badge-slot" data-id="champion" data-title="Top Learner (1,000+ XP)" id="badge_champion">🏆</div>
+                </div>
+                <div class="stat-subtitle">Hover badges to view rules</div>
+            </div>
+        </div>
+
+        <!-- ── Navigation ──────────────────────────────────────────── -->
+        <div class="nav-row">
+            <div class="tabs-container">
+                <button class="tab-btn active" id="tabCatalog" onclick="switchTab('catalog')">
+                    📁 Training Catalog
+                </button>
+                <button class="tab-btn" id="tabLeaderboard" onclick="switchTab('leaderboard')">
+                    🏆 Leaderboard
+                </button>
+            </div>
+
+            <!-- Filter Controls (only visible in Catalog) -->
+            <div class="filter-controls" id="catalogControls">
+                <div class="search-container">
+                    <input type="search" id="searchInput" placeholder="Search courses or keywords..." oninput="handleSearch()">
+                </div>
+                <select class="filter-select" id="levelFilter" onchange="handleSearch()">
+                    <option value="all">All Levels</option>
+                    <option value="0">Level 0: Basics</option>
+                    <option value="1">Level 1: Communication</option>
+                    <option value="2">Level 2: Productivity</option>
+                    <option value="3">Level 3: Smart Workflows</option>
+                    <option value="4">Level 4: Power User</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- ── Tab Content: Catalog ────────────────────────────── -->
+        <div id="catalogTabContent">
+            <div class="cards-grid" id="cardsGrid">
+                <!-- LEVEL 0 -->
+                <div class="card" data-level="0" id="card_win11" data-search="windows 11 navigation search settings desktop shortcuts level 0 basics">
+                    <div class="card-header">
+                        <span class="card-tag tag-l0">Level 0 · Basics</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Windows 11 Navigation</h2>
+                    <p class="card-desc">Master the desktop environment, customized taskbars, smart shortcuts, and system setting navigation.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 20 min</span>
+                        <span class="xp-reward">+20 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/windows/get-started-with-windows-11-9f4d8d4f-dfc6-4518-9ef6-069408c21f0c" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_win11')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-level="0" id="card_onedrive" data-search="onedrive file syncing clouds document storage restore backup share level 0 basics">
+                    <div class="card-header">
+                        <span class="card-tag tag-l0">Level 0 · Basics</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">OneDrive File Syncing</h2>
+                    <p class="card-desc">Learn how to configure file synchronization, access document version history, and securely share links.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 30 min</span>
+                        <span class="xp-reward">+30 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/office/work-with-files-in-onedrive-9f4d8d4f-dfc6-4518-9ef6-069408c21f0c" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_onedrive')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-level="0" id="card_edge_sec" data-search="microsoft edge browser security passwords tracking privacy level 0 basics">
+                    <div class="card-header">
+                        <span class="card-tag tag-l0">Level 0 · Basics</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Edge Browser Security</h2>
+                    <p class="card-desc">Navigate securely using tracking prevention, smart screen filters, profile syncing, and secure passwords.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 25 min</span>
+                        <span class="xp-reward">+25 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/microsoft-edge" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_edge_sec')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEVEL 1 -->
+                <div class="card" data-level="1" id="card_teams_channels" data-search="teams channels meetings chats collaboration communications level 1">
+                    <div class="card-header">
+                        <span class="card-tag tag-l1">Level 1 · Beginner</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Teams Channels & Meetings</h2>
+                    <p class="card-desc">Configure meeting settings, use breakout rooms, host channel posts, and build rich chats.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 40 min</span>
+                        <span class="xp-reward">+40 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/teams" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_teams_channels')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-level="1" id="card_outlook_cal" data-search="outlook calendar mastery scheduling events meetings booking level 1">
+                    <div class="card-header">
+                        <span class="card-tag tag-l1">Level 1 · Beginner</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Outlook Calendar Mastery</h2>
+                    <p class="card-desc">Efficiently coordinate calendars, create team meetings, configure time zones, and schedule events.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 35 min</span>
+                        <span class="xp-reward">+35 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/outlook" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_outlook_cal')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-level="1" id="card_sharepoint_coauthor" data-search="sharepoint file coauthoring sharing documents excel collaborate level 1">
+                    <div class="card-header">
+                        <span class="card-tag tag-l1">Level 1 · Beginner</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">SharePoint Co-Authoring</h2>
+                    <p class="card-desc">Collaborate inside documents simultaneously with multiple staff members without locking files.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 30 min</span>
+                        <span class="xp-reward">+30 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/sharepoint" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_sharepoint_coauthor')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-level="1" id="card_loop_co" data-search="microsoft loop workspaces pages components live sync level 1">
+                    <div class="card-header">
+                        <span class="card-tag tag-l1">Level 1 · Beginner</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Loop Co-Creation</h2>
+                    <p class="card-desc">Assemble shared workspaces and live components that remain dynamically synced across Teams and Outlook.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 40 min</span>
+                        <span class="xp-reward">+45 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/office/get-started-with-microsoft-loop-9f4d8d4f-dfc6-4518-9ef6-069408c21f0c" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_loop_co')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEVEL 2 -->
+                <div class="card" data-level="2" id="card_word_layout" data-search="word document layouts margins templates styling writing level 2">
+                    <div class="card-header">
+                        <span class="card-tag tag-l2">Level 2 · Intermediate</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Word Document Layouts</h2>
+                    <p class="card-desc">Configure sections, professional layout templates, headers, footers, and table styles.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 30 min</span>
+                        <span class="xp-reward">+30 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/word" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_word_layout')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-level="2" id="card_excel_basic" data-search="excel basic formulas sheets grids tables calculations math level 2">
+                    <div class="card-header">
+                        <span class="card-tag tag-l2">Level 2 · Intermediate</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Excel Spreadsheet Basics</h2>
+                    <p class="card-desc">Construct cell data ranges, basic SUM/AVERAGE math calculations, sorting lists, and formatting tables.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 45 min</span>
+                        <span class="xp-reward">+45 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/excel" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_excel_basic')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-level="2" id="card_ppt_design" data-search="powerpoint designer presentations slide decks layout style transition level 2">
+                    <div class="card-header">
+                        <span class="card-tag tag-l2">Level 2 · Intermediate</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">PowerPoint Slides</h2>
+                    <p class="card-desc">Apply smart PowerPoint Designer templates, custom transitions, animations, and presenter guidelines.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 35 min</span>
+                        <span class="xp-reward">+35 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/powerpoint" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_ppt_design')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEVEL 3 -->
+                <div class="card" data-level="3" id="card_copilot_m365" data-search="copilot m365 application integration smart prompts tools ai level 3">
+                    <div class="card-header">
+                        <span class="card-tag tag-l3">Level 3 · Upper</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Copilot App Integration</h2>
+                    <p class="card-desc">Use AI Copilot in Word, Excel, and Teams to summarize threads, draft notes, and outline presentations.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 50 min</span>
+                        <span class="xp-reward">+55 XP</span>
+                        <div class="btn-row">
+                            <a href="https://learn.microsoft.com/en-us/training/paths/get-started-with-microsoft-365-copilot/" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_copilot_m365')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-level="3" id="card_forms_surveys" data-search="forms surveys polls questionnaires questions data gather level 3">
+                    <div class="card-header">
+                        <span class="card-tag tag-l3">Level 3 · Upper</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Microsoft Forms Surveys</h2>
+                    <p class="card-desc">Deploy responsive surveys, gather customer feedback, configure branching logic, and evaluate graphs.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 30 min</span>
+                        <span class="xp-reward">+30 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/forms" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_forms_surveys')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-level="3" id="card_planner_tasks" data-search="planner to do tasks boards bucket progress calendar level 3">
+                    <div class="card-header">
+                        <span class="card-tag tag-l3">Level 3 · Upper</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Planner & To-Do Boards</h2>
+                    <p class="card-desc">Organize project tasks using Kanban boards, assign tasks, track due dates, and monitor team checklists.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 40 min</span>
+                        <span class="xp-reward">+40 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/planner" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_planner_tasks')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEVEL 4 -->
+                <div class="card" data-level="4" id="card_excel_pivot" data-search="excel pivot tables xlookup lookup database search level 4">
+                    <div class="card-header">
+                        <span class="card-tag tag-l4">Level 4 · Advanced</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Excel Pivot & XLOOKUP</h2>
+                    <p class="card-desc">Perform advanced data searches using XLOOKUP and structure massive databases using dynamic pivot tables.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 60 min</span>
+                        <span class="xp-reward">+60 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/excel" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_excel_pivot')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-level="4" id="card_power_automate" data-search="power automate flows trigger actions email alerts dynamic level 4">
+                    <div class="card-header">
+                        <span class="card-tag tag-l4">Level 4 · Advanced</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">Power Automate Tasks</h2>
+                    <p class="card-desc">Design automated workflows, generate Teams notifications, route approvals, and sync directories.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 75 min</span>
+                        <span class="xp-reward">+80 XP</span>
+                        <div class="btn-row">
+                            <a href="https://learn.microsoft.com/en-us/training/paths/get-started-power-automate/" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_power_automate')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-level="4" id="card_sp_lists" data-search="sharepoint custom lists views columns databases grids level 4">
+                    <div class="card-header">
+                        <span class="card-tag tag-l4">Level 4 · Advanced</span>
+                        <span class="type-badge">Viva Course</span>
+                    </div>
+                    <h2 class="card-title">SharePoint Custom Lists</h2>
+                    <p class="card-desc">Architect columns, custom grid views, dynamic tracking databases, and integrate metadata settings.</p>
+                    <div class="card-footer">
+                        <span class="est-time">⏱️ 50 min</span>
+                        <span class="xp-reward">+50 XP</span>
+                        <div class="btn-row">
+                            <a href="https://support.microsoft.com/en-us/sharepoint" target="_blank" class="btn-action btn-launch">Launch ↗</a>
+                            <button class="btn-action btn-quiz" onclick="openQuiz('card_sp_lists')">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Tab Content: Leaderboard ─────────────────────────── -->
+        <div id="leaderboardTabContent" class="hidden">
+            <div class="leaderboard-container">
+                <div class="leaderboard-header">
+                    <h3 class="leaderboard-title">Keith M365 Learning Leaderboard</h3>
+                    <span style="color: var(--accent-blue-glow); font-weight: 600; font-size: 0.9rem;">Real-time Scores</span>
+                </div>
+                <div id="leaderboardRows">
+                    <!-- Dynamic mock leaderboard injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Modal Quiz Template ────────────────────────────────── -->
+    <div class="modal-overlay" id="quizModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title" id="quizTitle">Course Quiz</div>
+                <button class="modal-close" onclick="closeQuiz()">×</button>
+            </div>
+            <div class="modal-body" id="quizBody">
+                <!-- Quiz content dynamically injected here -->
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                <button class="btn-modal-next" id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- QUIZ DATABASE ---
+        const QUIZ_DATABASE = {
+            card_win11: [
+                {
+                    q: "Which key combination directly opens Windows 11 System Settings?",
+                    options: ["Windows Key + S", "Windows Key + I", "Ctrl + Alt + Del", "Alt + Space"],
+                    correct: 1
+                },
+                {
+                    q: "How can you pin an app icon to the Taskbar?",
+                    options: [
+                        "Drag it from a browser window",
+                        "Right-click the app in the Start Menu and select 'Pin to taskbar'",
+                        "Press Windows Key + T",
+                        "Double-click the Desktop background"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "What is Snap Layouts in Windows 11 used for?",
+                    options: [
+                        "Backing up system registries",
+                        "Organizing multiple windows neatly on your screen grid",
+                        "Compressing picture file sizes",
+                        "Setting custom screensaver slideshows"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_onedrive: [
+                {
+                    q: "What does a green checkmark icon next to a file in OneDrive mean?",
+                    options: [
+                        "The file is currently uploading",
+                        "The file is saved only in the cloud, not locally",
+                        "The file is downloaded to your device and available offline",
+                        "The file has a sharing link active"
+                    ],
+                    correct: 2
+                },
+                {
+                    q: "How do you view previous edits or retrieve an older version of a OneDrive document?",
+                    options: [
+                        "Right-click the file and choose 'Version history'",
+                        "Rename the document with '.bak' extension",
+                        "Open the Recycle Bin and look for duplicate names",
+                        "OneDrive does not support retrieving older document drafts"
+                    ],
+                    correct: 0
+                },
+                {
+                    q: "Which sharing link setting is safest for sensitive company files sent internally?",
+                    options: [
+                        "Anyone with the link (public)",
+                        "People in Keith & Associates with the link",
+                        "Public Anonymous Edit Access",
+                        "Allow forwarding to external contacts"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_edge_sec: [
+                {
+                    q: "Where in Edge settings can you clear browser cookies and cached databases?",
+                    options: [
+                        "System and Performance",
+                        "Privacy, search, and services",
+                        "Edge Sidebar Widgets",
+                        "Downloads Directory Panel"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "What Edge browser feature assists in managing separate work projects and tabs without mixing histories?",
+                    options: [
+                        "Edge Collections",
+                        "Edge Workspaces",
+                        "Edge Vertical Tabs Layout",
+                        "Developer Console Mode"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "How does Edge's SmartScreen service protect you?",
+                    options: [
+                        "It speeds up file downloads by 200%",
+                        "It blocks known phishing websites and malicious downloads",
+                        "It monitors CPU usage during high performance browsing",
+                        "It schedules browser shutdowns automatically"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_teams_channels: [
+                {
+                    q: "What is the primary difference between standard channels and private channels?",
+                    options: [
+                        "Private channels require a paid licensing upgrade",
+                        "Standard channels are open to all team members; private channels restrict access to specific invited users",
+                        "Private channels block video meetings",
+                        "Standard channels limit chat histories to 30 days"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "Where are files uploaded in standard Teams channel chats saved?",
+                    options: [
+                        "In the sender's local Desktop cache folder",
+                        "In the team's dedicated SharePoint document library",
+                        "On the user's personal OneDrive root folder",
+                        "In an Azure storage vault locked for editing"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "How can you focus your audio input and block background office noise in a Teams meeting?",
+                    options: [
+                        "Change your headset settings in Control Panel",
+                        "Turn on 'Noise suppression' in Teams Device Settings",
+                        "Decrease incoming video resolution",
+                        "Teams automatically blocks all room noise with no option toggles"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_outlook_cal: [
+                {
+                    q: "How do you request meeting schedule proposals from colleagues without emailing back-and-forth?",
+                    options: [
+                        "Use the 'Scheduling Assistant' or 'FindTime/Scheduling Poll' features",
+                        "Create a shared word document table",
+                        "Publish your calendar to a public web page link",
+                        "Only the meeting organizer can select times; there is no proposal tool"
+                    ],
+                    correct: 0
+                },
+                {
+                    q: "How do you delegate calendar management access to an executive assistant?",
+                    options: [
+                        "Give them your Microsoft login passwords",
+                        "Go to File > Info > Account Settings > Delegate Access",
+                        "Share your Outlook profile registry keys",
+                        "Outlook calendars cannot be managed by other users"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "What does the 'Working Hours and Location' feature in Outlook do?",
+                    options: [
+                        "Monitors your physical building entries and exits",
+                        "Tells colleagues if you are working remotely or in-office for specific days",
+                        "Sends auto-replies to external customers only",
+                        "Blocks you from logging in outside specified hours"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_sharepoint_coauthor: [
+                {
+                    q: "What happens if two users try to edit the same Excel cell at the exact same time?",
+                    options: [
+                        "SharePoint locks the entire workbook and crashes",
+                        "The last edit made wins and is highlighted in the cells",
+                        "A file merge conflict error forces a complete system roll back",
+                        "Editing cells simultaneously is blocked; users must wait in queue"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "To collaborate on a document without locks, where should the file be stored?",
+                    options: [
+                        "Your local computer's 'Documents' path",
+                        "A shared Network mapped folder (e.g. S:\\ drive)",
+                        "A SharePoint library or OneDrive folder",
+                        "Emailed as a '.docx' attachment back and forth"
+                    ],
+                    correct: 2
+                },
+                {
+                    q: "How do you tag a colleague inside a Word comment to assign them a review task?",
+                    options: [
+                        "Type their full name in bold text",
+                        "Use the '@' symbol followed by their name/email",
+                        "Send them a link inside a separate Teams message",
+                        "Copy the text selection and email it manually"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_loop_co: [
+                {
+                    q: "What makes Microsoft Loop components unique?",
+                    options: [
+                        "They can only be shared inside emails",
+                        "They are block components that can be edited in real-time across Teams, Outlook, and Loop pages simultaneously",
+                        "They require converting text files into PDF files",
+                        "They automatically delete themselves after 7 days"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "How do you insert a new Loop component into a Teams chat?",
+                    options: [
+                        "Export a Loop page to your OneDrive, then copy the URL",
+                        "Click the 'Loop component' icon below the message typing box",
+                        "Upload a loop file using the attachment paperclip icon",
+                        "Press Ctrl + Shift + L on your keyboard"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "What is a Loop Workspace?",
+                    options: [
+                        "A shared physical office desk bookable in Teams",
+                        "A central project space where you gather related Loop pages, files, and links",
+                        "A custom desktop screen layout for Windows 11",
+                        "An administration portal for M365 developers"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_word_layout: [
+                {
+                    q: "How do you change layouts for only a specific page without changing the entire document?",
+                    options: [
+                        "Insert a 'Section Break (Next Page)'",
+                        "Create a new document and merge them later",
+                        "Double click the side ruler bar",
+                        "Insert a page layout style tag"
+                    ],
+                    correct: 0
+                },
+                {
+                    q: "What is the best way to maintain consistent headings and fonts across a 30-page document?",
+                    options: [
+                        "Copy and paste the format of each heading manually",
+                        "Use the 'Styles' pane (Heading 1, Heading 2, etc.)",
+                        "Keep a text color reference code list on your desk",
+                        "Change default font parameters under System Registry"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "How do you insert a dynamic Table of Contents?",
+                    options: [
+                        "Type the headings and page numbers manually using tabs",
+                        "Go to References > Table of Contents and select an automatic style",
+                        "Insert a custom Excel sheet grid on page 2",
+                        "Word cannot generate dynamic tables of content"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_excel_basic: [
+                {
+                    q: "Which character MUST begin every Excel formula?",
+                    options: ["$", "=", "@", "+"],
+                    correct: 1
+                },
+                {
+                    q: "What does the formula =SUM(A1:A5) calculate?",
+                    options: [
+                        "The count of empty cells in columns A1 through A5",
+                        "The mathematical total of values in cells A1 through A5",
+                        "The average value within range A1 to A5",
+                        "The largest number in columns A1 and A5"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "How do you freeze the top header row so it stays visible while scrolling down?",
+                    options: [
+                        "Double-click the top row border",
+                        "Go to View > Freeze Panes > Freeze Top Row",
+                        "Lock the spreadsheet cells with a security password",
+                        "Increase top margin boundaries in print layout"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_ppt_design: [
+                {
+                    q: "How does PowerPoint Designer help construct slides?",
+                    options: [
+                        "It reads the script and records voice narration",
+                        "It uses AI to suggest design layouts and icons based on your slide text",
+                        "It auto-corrects presentation grammar mistakes",
+                        "It exports your slide deck as an MP4 movie file"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "What is the 'Morph' transition used for?",
+                    options: [
+                        "Changing presentation font styling randomly",
+                        "Creating smooth animations of objects moving from one slide to the next",
+                        "Converting PPT presentations to PDF templates",
+                        "Playing 3D video models during slide loading"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "Where do you configure slides to advance automatically after a set number of seconds?",
+                    options: [
+                        "Design Tab > Theme Options",
+                        "Transitions Tab > Timing Group > Advance Slide Options",
+                        "Slide Show Tab > Custom Slide Show Profiles",
+                        "Auto-advancing slides is not supported in PowerPoint"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_copilot_m365: [
+                {
+                    q: "What are the four components of an effective AI prompt?",
+                    options: [
+                        "Greeting, Subject, Paragraph, Signature",
+                        "Goal, Context, Source (Data Reference), and Expectations",
+                        "URL Link, File Name, Word Count, Font Specification",
+                        "Command line, Variable, Parameter, Executable"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "How can Copilot assist you during a live Microsoft Teams meeting?",
+                    options: [
+                        "It can automatically answer client calls for you",
+                        "It can summarize discussions, list action items, and find unanswered questions in real-time",
+                        "It records audio files and translates them to MP3 files",
+                        "It locks out participants who speak too long"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "What is 'grounding' in Copilot?",
+                    options: [
+                        "Restricting users from prompt input access",
+                        "Ensuring the AI references only your secure tenant files (documents, emails, chats) to generate correct company answers",
+                        "Resetting user preferences to basic default configurations",
+                        "Syncing cloud files to local device hard drives"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_forms_surveys: [
+                {
+                    q: "What feature in Microsoft Forms changes the next question based on the user's previous answer?",
+                    options: [
+                        "Branching Options",
+                        "Dynamic Themes",
+                        "Form Sections",
+                        "Response Redirects"
+                    ],
+                    correct: 0
+                },
+                {
+                    q: "How can you prevent external anonymous users from completing a company survey?",
+                    options: [
+                        "Password protect the survey link file",
+                        "In Form settings, change access parameter to 'Only people in my organization can respond'",
+                        "Restrict survey submissions to desktop computers only",
+                        "Add a CAPTCHA picture question"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "Where can you analyze real-time survey results grids and export them directly to a clean database?",
+                    options: [
+                        "Word text layouts",
+                        "The 'Responses' tab on your Form, with an 'Open in Excel' button",
+                        "Outlook Outbox directories",
+                        "SharePoint Admin portal files"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_planner_tasks: [
+                {
+                    q: "What is a 'Bucket' in Microsoft Planner?",
+                    options: [
+                        "A folder for archiving completed project reports",
+                        "A category column used to group and sort tasks on your Kanban board",
+                        "A temporary local storage drive for data backup",
+                        "A list of project members and email profiles"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "How do you view your personal assigned tasks across multiple shared project plans in one list?",
+                    options: [
+                        "Open the 'Assigned to me' view in Microsoft To-Do or Planner hub",
+                        "Email plan administrators for a weekly CSV status report",
+                        "Search Outlook calendars for task blocks",
+                        "Planner does not consolidate assigned tasks into one view"
+                    ],
+                    correct: 0
+                },
+                {
+                    q: "How can you visually organize and track different categories of work (like 'Marketing' or 'IT') inside a Planner board?",
+                    options: [
+                        "Use custom Colored Labels (Tags) on the task cards",
+                        "Create completely separate Planner databases for every single word",
+                        "Drag tasks into different browser window panels",
+                        "Planner cards do not support labels or categories"
+                    ],
+                    correct: 0
+                }
+            ],
+            card_excel_pivot: [
+                {
+                    q: "What does XLOOKUP do in Excel?",
+                    options: [
+                        "Highlights duplicates in a data column",
+                        "Looks up a value in a column and returns a matching value from another column",
+                        "Draws custom graphical scatter charts",
+                        "Converts Excel databases into Access databases"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "What is the primary benefit of using a Pivot Table?",
+                    options: [
+                        "It encrypts sheet data with passwords",
+                        "It quickly summarizes, reorganizes, and filters massive lists of data to find trends",
+                        "It automatically emails spreadsheets to management daily",
+                        "It formats grids with modern color schemes"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "In XLOOKUP, what is the default behavior if a exact match is not found?",
+                    options: [
+                        "Excel throws a fatal database runtime error",
+                        "It returns the next closest alphabetically similar text",
+                        "It returns a `#N/A` error (unless you specify a fallback return value in the 4th parameter)",
+                        "It deletes the formula cell value"
+                    ],
+                    correct: 2
+                }
+            ],
+            card_power_automate: [
+                {
+                    q: "What is a 'Trigger' in Power Automate?",
+                    options: [
+                        "A database query command checking records",
+                        "The starting event that runs your automated flow (e.g. a new email arriving)",
+                        "A button in Teams that stops a running loop",
+                        "A syntax error in flow code execution"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "How do you require manager approval for a document before it is published in SharePoint?",
+                    options: [
+                        "Email the manager and wait for reply before renaming the file",
+                        "Use the Power Automate 'Approvals' connector to route an authorization request",
+                        "Give the manager edit access to your OneDrive",
+                        "SharePoint automatically handles approvals with no flow setups"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "What type of flow runs automatically on a set schedule (e.g., every Monday at 9 AM)?",
+                    options: [
+                        "Instant cloud flow",
+                        "Scheduled cloud flow",
+                        "Automated cloud flow",
+                        "Desktop manual flow"
+                    ],
+                    correct: 1
+                }
+            ],
+            card_sp_lists: [
+                {
+                    q: "What is a SharePoint List?",
+                    options: [
+                        "A list of site administrators and passwords",
+                        "A secure web-based database table composed of custom columns (text, date, person, choice) to track items",
+                        "A simple list of text bullet points on a SharePoint page",
+                        "A directory of page links inside the navigation bar"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "How do you view only items marked 'In Progress' without editing list data?",
+                    options: [
+                        "Delete all completed rows temporarily",
+                        "Create a custom filtered List View",
+                        "Export the data to Excel every time you read it",
+                        "SharePoint Lists cannot filter views dynamically"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "What column type in SharePoint Lists connects a field directly to your corporate Active Directory profiles?",
+                    options: [
+                        "Single line of text",
+                        "Person or Group column",
+                        "Lookup column",
+                        "Choice option"
+                    ],
+                    correct: 1
+                }
+            ]
+        };
+
+        // --- GLOBAL STATE ---
+        let currentTab = 'catalog';
+        let userXp = 0;
+        let completedCourses = [];
+
+        // Mock users database for Leaderboard
+        let mockUsers = [
+            { name: "Sarah Jenkins", dept: "Engineering", xp: 950, completions: 15 },
+            { name: "Marcus Vance", dept: "Design", xp: 820, completions: 13 },
+            { name: "David Kim", dept: "Operations", xp: 710, completions: 11 },
+            { name: "Jessica Alvarez", dept: "Finance", xp: 580, completions: 9 },
+            { name: "Thomas Reynolds", dept: "Engineering", xp: 480, completions: 8 },
+            { name: "Amanda Foster", dept: "Marketing", xp: 320, completions: 5 },
+            { name: "Daniel Martinez", dept: "Operations", xp: 250, completions: 4 },
+            { name: "Emily Watson", dept: "Design", xp: 180, completions: 3 },
+            { name: "Robert Chen", dept: "IT Support", xp: 120, completions: 2 },
+            { name: "Lisa Thompson", dept: "Finance", xp: 80, completions: 1 },
+            { name: "Christopher Blake", dept: "Marketing", xp: 50, completions: 1 }
+        ];
+
+        // Active Quiz State
+        let activeQuizCardId = null;
+        let activeQuizQuestionIdx = 0;
+        let activeSelectedOptionIdx = null;
+        let activeAnswersGiven = [];
+
+        // --- APP INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserData();
+            updateUI();
+            renderLeaderboard();
+        });
+
+        // --- PERSISTENCE ---
+        function loadUserData() {
+            const savedXp = localStorage.getItem('viva_user_xp');
+            const savedCompletions = localStorage.getItem('viva_user_completions');
+
+            if (savedXp) userXp = parseInt(savedXp);
+            if (savedCompletions) completedCourses = JSON.parse(savedCompletions);
+        }
+
+        function saveUserData() {
+            localStorage.setItem('viva_user_xp', userXp);
+            localStorage.setItem('viva_user_completions', JSON.stringify(completedCourses));
+        }
+
+        // --- UI UPDATING ---
+        function updateUI() {
+            // Update stats panel values
+            document.getElementById('userXpVal').innerText = `${userXp} XP`;
+            
+            // Calculate Level based on XP
+            let lvl = 0;
+            let title = "Level 0: Rookie Explorer";
+            if (userXp >= 1000) { lvl = 4; title = "Level 4: Digital Legend"; }
+            else if (userXp >= 600) { lvl = 3; title = "Level 3: Workflow Ninja"; }
+            else if (userXp >= 300) { lvl = 2; title = "Level 2: Office Master"; }
+            else if (userXp >= 100) { lvl = 1; title = "Level 1: Communication Pro"; }
+            
+            document.getElementById('userLevelTitle').innerText = title;
+
+            // Mark completed cards
+            completedCourses.forEach(cardId => {
+                const card = document.getElementById(cardId);
+                if (card) {
+                    card.classList.add('completed');
+                    const btn = card.querySelector('.btn-quiz');
+                    if (btn) {
+                        btn.innerText = "✓ Completed";
+                        btn.disabled = true;
+                    }
+                }
+            });
+
+            // Evaluate and unlock badges
+            evaluateBadges();
+            
+            // Update rank
+            updateUserRank();
+        }
+
+        function evaluateBadges() {
+            // Badge 1: Seed - 1st completion
+            if (completedCourses.length >= 1) {
+                document.getElementById('badge_seed').classList.add('unlocked');
+            }
+            // Badge 2: Teams - All Level 1 (channels, outlook, sharepoint, loop)
+            const lvl1Cards = ['card_teams_channels', 'card_outlook_cal', 'card_sharepoint_coauthor', 'card_loop_co'];
+            const allLvl1Done = lvl1Cards.every(id => completedCourses.includes(id));
+            if (allLvl1Done) {
+                document.getElementById('badge_teams').classList.add('unlocked');
+            }
+            // Badge 3: Loop Pioneer
+            if (completedCourses.includes('card_loop_co')) {
+                document.getElementById('badge_loop').classList.add('unlocked');
+            }
+            // Badge 4: Copilot Champion (All Level 3 & 4 Copilot/AI modules)
+            if (completedCourses.includes('card_copilot_m365')) {
+                document.getElementById('badge_copilot').classList.add('unlocked');
+            }
+            // Badge 5: Top Learner - XP >= 1000
+            if (userXp >= 1000) {
+                document.getElementById('badge_champion').classList.add('unlocked');
+            }
+        }
+
+        function updateUserRank() {
+            // Find user's position in mockUsers sorted by XP
+            let usersCopy = [...mockUsers, { name: "Doyle English", dept: "IT Department", xp: userXp, completions: completedCourses.length }];
+            usersCopy.sort((a, b) => b.xp - a.xp);
+            
+            const userIndex = usersCopy.findIndex(u => u.name === "Doyle English");
+            const rank = userIndex + 1;
+            document.getElementById('userRankVal').innerText = `#${rank}`;
+        }
+
+        // --- NAVIGATION TABS ---
+        function switchTab(tab) {
+            currentTab = tab;
+            if (tab === 'catalog') {
+                document.getElementById('tabCatalog').classList.add('active');
+                document.getElementById('tabLeaderboard').classList.remove('active');
+                document.getElementById('catalogTabContent').classList.remove('hidden');
+                document.getElementById('leaderboardTabContent').classList.add('hidden');
+                document.getElementById('catalogControls').classList.remove('hidden');
+            } else {
+                document.getElementById('tabCatalog').classList.remove('active');
+                document.getElementById('tabLeaderboard').classList.add('active');
+                document.getElementById('catalogTabContent').classList.add('hidden');
+                document.getElementById('leaderboardTabContent').classList.remove('hidden');
+                document.getElementById('catalogControls').classList.add('hidden');
+                renderLeaderboard();
+            }
+        }
+
+        // --- SEARCH & FILTERS ---
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filterLvl = document.getElementById('levelFilter').value;
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const searchTags = card.getAttribute('data-search');
+                const cardLvl = card.getAttribute('data-level');
+                
+                const matchesSearch = searchTags.includes(query);
+                const matchesFilter = (filterLvl === 'all') || (cardLvl === filterLvl);
+
+                if (matchesSearch && matchesFilter) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // --- LEADERBOARD RENDERING ---
+        function renderLeaderboard() {
+            // Add user to the copy and sort
+            let list = [...mockUsers, { name: "Doyle English", dept: "IT Department", xp: userXp, completions: completedCourses.length }];
+            list.sort((a, b) => b.xp - a.xp);
+
+            const container = document.getElementById('leaderboardRows');
+            container.innerHTML = '';
+
+            list.forEach((user, idx) => {
+                const isUser = user.name === "Doyle English";
+                const rank = idx + 1;
+                
+                let rankClass = `rank-number`;
+                let rankIcon = rank;
+                if (rank === 1) { rankClass += ' rank-1'; rankIcon = '🥇'; }
+                else if (rank === 2) { rankClass += ' rank-2'; rankIcon = '🥈'; }
+                else if (rank === 3) { rankClass += ' rank-3'; rankIcon = '🥉'; }
+
+                const initials = user.name.split(' ').map(n => n[0]).join('');
+
+                const row = document.createElement('div');
+                row.className = `leaderboard-row ${isUser ? 'user-row' : ''}`;
+                row.innerHTML = `
+                    <div class="leaderboard-left">
+                        <div class="${rankClass}">${rankIcon}</div>
+                        <div class="leaderboard-avatar" style="background: ${isUser ? 'linear-gradient(135deg, var(--accent-blue), var(--accent-purple))' : 'rgba(255,255,255,0.05)'}; color: #fff;">
+                            ${initials}
+                        </div>
+                        <div class="leaderboard-info">
+                            <h4>${user.name} ${isUser ? '(You)' : ''}</h4>
+                            <p>${user.dept}</p>
+                        </div>
+                    </div>
+                    <div class="leaderboard-right">
+                        <div class="leaderboard-completions">${user.completions} courses</div>
+                        <div class="leaderboard-xp">${user.xp} XP</div>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        // --- QUIZ ENGINE ---
+        function openQuiz(cardId) {
+            // Check if already completed
+            if (completedCourses.includes(cardId)) return;
+
+            activeQuizCardId = cardId;
+            activeQuizQuestionIdx = 0;
+            activeSelectedOptionIdx = null;
+            activeAnswersGiven = [];
+
+            // Update modal headers
+            const cardElement = document.getElementById(cardId);
+            const title = cardElement.querySelector('.card-title').innerText;
+            document.getElementById('quizTitle').innerText = `Quiz: ${title}`;
+
+            // Open Modal
+            document.getElementById('quizModal').classList.add('active');
+            
+            // Render first question
+            renderQuestion();
+        }
+
+        function closeQuiz() {
+            document.getElementById('quizModal').classList.remove('active');
+        }
+
+        function renderQuestion() {
+            const questions = QUIZ_DATABASE[activeQuizCardId];
+            const totalQs = questions.length;
+            const qData = questions[activeQuizQuestionIdx];
+
+            // Update progress bar
+            const progressPct = ((activeQuizQuestionIdx) / totalQs) * 100;
+            document.getElementById('quizBody').innerHTML = `
+                <div class="quiz-progress">
+                    <span>Question ${activeQuizQuestionIdx + 1} of ${totalQs}</span>
+                    <span>${Math.round(progressPct)}% Complete</span>
+                </div>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-bar-fill" style="width: ${progressPct}%"></div>
+                </div>
+                <div class="question-text">${qData.q}</div>
+                <div class="options-list" id="optionsList"></div>
+            `;
+
+            // Render options
+            const optionsList = document.getElementById('optionsList');
+            qData.options.forEach((opt, idx) => {
+                const optItem = document.createElement('div');
+                optItem.className = 'option-item';
+                optItem.innerHTML = `
+                    <div class="option-radio"></div>
+                    <div>${opt}</div>
+                `;
+                optItem.onclick = () => selectOption(idx);
+                optionsList.appendChild(optItem);
+            });
+
+            // Update next button text and state
+            const nextBtn = document.getElementById('nextBtn');
+            nextBtn.disabled = true;
+            if (activeQuizQuestionIdx === totalQs - 1) {
+                nextBtn.innerText = "Submit Answers";
+            } else {
+                nextBtn.innerText = "Next Question";
+            }
+        }
+
+        function selectOption(idx) {
+            activeSelectedOptionIdx = idx;
+            const options = document.querySelectorAll('.option-item');
+            options.forEach((item, index) => {
+                if (index === idx) {
+                    item.classList.add('selected');
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            const questions = QUIZ_DATABASE[activeQuizCardId];
+            const qData = questions[activeQuizQuestionIdx];
+            
+            // Save answer
+            activeAnswersGiven.push(activeSelectedOptionIdx);
+
+            if (activeQuizQuestionIdx < questions.length - 1) {
+                activeQuizQuestionIdx++;
+                activeSelectedOptionIdx = null;
+                renderQuestion();
+            } else {
+                // Submit and grade
+                gradeQuiz();
+            }
+        }
+
+        function gradeQuiz() {
+            const questions = QUIZ_DATABASE[activeQuizCardId];
+            let correctCount = 0;
+            
+            questions.forEach((q, idx) => {
+                if (activeAnswersGiven[idx] === q.correct) {
+                    correctCount++;
+                }
+            });
+
+            const passed = correctCount === questions.length; // Must get all correct to pass
+
+            const quizBody = document.getElementById('quizBody');
+            const footer = document.getElementById('modalFooter');
+            
+            if (passed) {
+                // Play Confetti
+                triggerConfetti();
+
+                // Award XP
+                const card = document.getElementById(activeQuizCardId);
+                const xpStr = card.querySelector('.xp-reward').innerText;
+                const xpAmount = parseInt(xpStr.replace('+ ', '').replace(' XP', ''));
+                
+                userXp += xpAmount;
+                completedCourses.push(activeQuizCardId);
+                saveUserData();
+
+                // Render success screen inside modal
+                quizBody.innerHTML = `
+                    <div class="quiz-success">
+                        <div class="success-icon">🎉</div>
+                        <div class="success-title">Congratulations!</div>
+                        <div class="success-text">You answered all ${questions.length} questions correctly and completed the training!</div>
+                        <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-blue-glow);">+${xpAmount} XP Awarded</div>
+                    </div>
+                `;
+
+                // Update footer button
+                footer.innerHTML = `
+                    <button class="btn-modal-next" onclick="closeQuizAndRefresh()">Awesome!</button>
+                `;
+            } else {
+                // Render failure screen
+                quizBody.innerHTML = `
+                    <div class="quiz-success">
+                        <div class="success-icon" style="filter: grayscale(0);">❌</div>
+                        <div class="success-title" style="color: #ef4444;">Keep Learning!</div>
+                        <div class="success-text">You got ${correctCount} out of ${questions.length} questions correct. You need 100% correct to earn the XP and badge.</div>
+                    </div>
+                `;
+
+                // Update footer button to allow retry
+                footer.innerHTML = `
+                    <button class="btn-modal-next" style="background: #ef4444;" onclick="retryQuiz()">Try Again</button>
+                `;
+            }
+        }
+
+        function closeQuizAndRefresh() {
+            closeQuiz();
+            // Restore default footer button
+            document.getElementById('modalFooter').innerHTML = `
+                <button class="btn-modal-next" id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+            `;
+            updateUI();
+            renderLeaderboard();
+        }
+
+        function retryQuiz() {
+            // Restore default footer button
+            document.getElementById('modalFooter').innerHTML = `
+                <button class="btn-modal-next" id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+            `;
+            openQuiz(activeQuizCardId);
+        }
+
+        // --- CONFETTI ENGINE (Custom offline canvas implementation) ---
+        let confettiActive = false;
+        let confettiParticles = [];
+        const canvas = document.getElementById('confettiCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function triggerConfetti() {
+            canvas.style.display = 'block';
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            confettiParticles = [];
+            for (let i = 0; i < 150; i++) {
+                confettiParticles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 6 + 4,
+                    d: Math.random() * canvas.height,
+                    color: `hsl(${Math.random() * 360}, 80%, 60%)`,
+                    tilt: Math.random() * 10 - 5,
+                    tiltAngleIncremental: Math.random() * 0.07 + 0.02,
+                    tiltAngle: 0
+                });
+            }
+
+            if (!confettiActive) {
+                confettiActive = true;
+                drawConfetti();
+            }
+
+            // Stop after 3 seconds
+            setTimeout(() => {
+                confettiActive = false;
+                canvas.style.display = 'none';
+            }, 3500);
+        }
+
+        function drawConfetti() {
+            if (!confettiActive) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            confettiParticles.forEach((p, idx) => {
+                p.tiltAngle += p.tiltAngleIncremental;
+                p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+                p.x += Math.sin(p.tiltAngle);
+                p.tilt = Math.sin(p.tiltAngle - idx / 3) * 15;
+
+                ctx.beginPath();
+                ctx.lineWidth = p.r;
+                ctx.strokeStyle = p.color;
+                ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+                ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+                ctx.stroke();
+
+                // Reset particle to top if it reaches bottom
+                if (p.y > canvas.height) {
+                    confettiParticles[idx] = {
+                        x: Math.random() * canvas.width,
+                        y: -20,
+                        r: p.r,
+                        d: p.d,
+                        color: p.color,
+                        tilt: p.tilt,
+                        tiltAngleIncremental: p.tiltAngleIncremental,
+                        tiltAngle: p.tiltAngle
+                    };
+                }
+            });
+
+            requestAnimationFrame(drawConfetti);
+        }
+
+        window.addEventListener('resize', () => {
+            if (confettiActive) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        });
+    </script>
+</body>
+</html>
